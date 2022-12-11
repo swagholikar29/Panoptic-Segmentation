@@ -17,12 +17,12 @@ INPUT_WIDTH = 1024
 class PanopticModel(Model): 
     def __init__(self, inp_shape=(None, 64, 1024, 5), rnn_flag=False, pixel_shuffle=False): 
         super(PanopticModel, self).__init__()
-        self.feature_list, self.final_feature = Decoder() #Extracted the feature maps C1, C2, C3, C4, C5
+        self.feature_list, self.final_feature = FPN() #Extracted the feature maps C1, C2, C3, C4, C5 #Added FPN call
         self.semantic_head = Sem_Seg_Head() 
-        #self.instance_head = Inst_Seg_Head()
+        self.instance_head = Inst_Seg_Head()
         self.sem_rnn_flag = rnn_flag
-        y_sem = Sem_Seg_Head(self.final_feature)
-        #y_inst = Inst_Seg_Head(self.feature_list) 
+        
+        #Panoptic Head call 
         return y
     
     def summary(self):
@@ -34,14 +34,23 @@ class PanopticModel(Model):
         self.decoder.summary()
         print("\n\n"+"="*count+" Semantic Head Summary "+"="*count+"\n\n")
         self.semantic_head.summary()
-        #print("\n\n"+"="*count+" Instance Head Summary "+"="*count+"\n\n")
+        #print("\n\n"+"="*count+" Instance Head _mmary "+"="*count+"\n\n")
         #self.instance_head.summary()
         #Add instance head.summary
+        #self.panoptic_head.summary()
+        #Add panoptic head.summary
+        
+    def call(self, x):        
+        y_list  = self.feature_list
+        y = self.final_feature        
+        y_sem = self.semantic_head(self.final_feature)
+        y_inst = self.instance_head(self.feature_list, self.final_feature)
+        
+        return y
 
 if __name__ == '__main__':
     panoptic_model = panoptic_model(rnn_flag=False, pixel_shuffle=False)
-    panoptic_model_model.build(input_shape=(None, 64, 1024, 5))
-    panoptic_model_model.call(Input(shape=(64, 1024, 5)))
-    
+    panoptic_model.build(input_shape=(None, 64, 1024, 5))
+    panoptic_model.call(Input(shape=(64, 1024, 5)))
     panoptic_model_model.summary()
 

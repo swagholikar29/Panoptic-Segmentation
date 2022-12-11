@@ -102,10 +102,16 @@ class Decoder(Model):
         y, skips, os = self.add_skip(x, y, skips, os)
         
 	C5 = y
-	C = [C1, C2, C3, C4, C5]
+	
+	self.FPN_rpn_feature_maps = [C1, C2, C3, C4, C5]
+        self.FPN_mrcnn_feature_maps = [C1, C2, C3, C4]
+        
+	dummy1 = self.FPN_rpn_feature_maps
+	dummy2 = self.FPN_mrcnn_feature_maps
         y = self.dropout(y)
-        return C, y
-    
+        
+        return dummy1, dummy2, y
+
     def add_skip(self, x, y, skips, os):
         if y.shape[2] > x.shape[2]:
             os //= 2
