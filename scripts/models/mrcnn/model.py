@@ -1,6 +1,8 @@
 """
 Mask R-CNN
-The main Mask R-CNN model implementation.
+The 
+
+ Mask R-CNN model implementation.
 
 Copyright (c) 2017 Matterport, Inc.
 Licensed under the MIT License (see LICENSE for details)
@@ -31,13 +33,14 @@ from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
 assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
+
 ############################################################
 #  Utility Functions
 ############################################################
 
 def log(text, array=None):
     """Prints a text message. And, optionally, if a Numpy array is provided it
-    prints its shape, min, and max values.
+    prints it's shape, min, and max values.
     """
     if array is not None:
         text = text.ljust(25)
@@ -84,6 +87,16 @@ def compute_backbone_shapes(config, image_shape):
         [[int(math.ceil(image_shape[0] / stride)),
           int(math.ceil(image_shape[1] / stride))]
          for stride in config.BACKBONE_STRIDES])
+
+
+############################################################
+#  Resnet Graph
+############################################################
+
+# Code adopted from:
+# https://github.com/fchollet/deep-learning-models/blob/master/resnet50.py
+
+# deleted
 
 ############################################################
 #  Proposal Layer
@@ -1506,11 +1519,11 @@ def generate_random_rois(image_shape, count, gt_class_ids, gt_boxes):
     rois[-remaining_count:] = global_rois
     return rois
 
-
+"""
 def data_generator(dataset, config, shuffle=True, augment=False, augmentation=None,
                    random_rois=0, batch_size=1, detection_targets=False,
                    no_augmentation_sources=None):
-    """A generator that returns images and corresponding target class ids,
+    A generator that returns images and corresponding target class ids,
     bounding box deltas, and masks.
 
     dataset: The Dataset object to pick data from
@@ -1692,17 +1705,18 @@ def data_generator(dataset, config, shuffle=True, augment=False, augmentation=No
             if error_count > 5:
                 raise
 
-
+"""
 ############################################################
 #  MaskRCNN Class
 ############################################################
 
 class MaskRCNN():
+    """
     """Encapsulates the Mask RCNN model functionality.
 
     The actual Keras model is in the keras_model property.
     """
-
+    
     def __init__(self, mode, config, model_dir):
         """
         mode: Either "training" or "inference"
@@ -1716,7 +1730,7 @@ class MaskRCNN():
         self.set_log_dir()
         self.keras_model = self.build(mode=mode, config=config)
 
-    def build(self, mode, config):
+    def build(self, mode, config, rpn_feature_maps, mrcnn_feature_maps, final):
         """Build Mask R-CNN architecture.
             input_shape: The shape of the input image.
             mode: Either "training" or "inference". The inputs and
@@ -1731,11 +1745,13 @@ class MaskRCNN():
                             "to avoid fractions when downscaling and upscaling."
                             "For example, use 256, 320, 384, 448, 512, ... etc. ")
 
+	"""
         # Inputs
         input_image = KL.Input(
             shape=[None, None, config.IMAGE_SHAPE[2]], name="input_image")
         input_image_meta = KL.Input(shape=[config.IMAGE_META_SIZE],
                                     name="input_image_meta")
+                                    """
         if mode == "training":
             # RPN GT
             input_rpn_match = KL.Input(
@@ -1773,10 +1789,7 @@ class MaskRCNN():
         # Bottom-up Layers
         # Returns a list of the last layers of each stage, 5 in total.
         # Don't create the thread (stage 5), so we pick the 4th item in the list.
-
-        ############################################################
-        #  Need to write the decoder here!
-        ############################################################
+	"""
 
         if callable(config.BACKBONE):
             _, C2, C3, C4, C5 = config.BACKBONE(input_image, stage5=True,
@@ -1786,7 +1799,7 @@ class MaskRCNN():
         #                                     stage5=True, train_bn=config.TRAIN_BN)
         # Top-down Layers
         # TODO: add assert to verify feature map sizes match what's in config
-        """P5 = KL.Conv2D(config.TOP_DOWN_PYRAMID_SIZE, (1, 1), name='fpn_c5p5')(C5)
+        P5 = KL.Conv2D(config.TOP_DOWN_PYRAMID_SIZE, (1, 1), name='fpn_c5p5')(C5)
         P4 = KL.Add(name="fpn_p4add")([
             KL.UpSampling2D(size=(2, 2), name="fpn_p5upsampled")(P5),
             KL.Conv2D(config.TOP_DOWN_PYRAMID_SIZE, (1, 1), name='fpn_c4p4')(C4)])
@@ -1822,7 +1835,7 @@ class MaskRCNN():
             anchors = KL.Lambda(lambda x: tf.Variable(anchors), name="anchors")(input_image)
         else:
             anchors = input_anchors
-
+ 
         # RPN Model
         rpn = build_rpn_model(config.RPN_ANCHOR_STRIDE,
                               len(config.RPN_ANCHOR_RATIOS), config.TOP_DOWN_PYRAMID_SIZE)
@@ -2037,11 +2050,17 @@ class MaskRCNN():
                                 cache_subdir='models',
                                 md5_hash='a268eb855778b3df3c7506639542a6af')
         return weights_path
-
-    def compile(self, learning_rate, momentum):
-        """Gets the model ready for training. Adds losses, regularization, and
-        metrics. Then calls the Keras compile() function.
         """
+        
+
+"""
+"""
+    def compile(self, learning_rate, momentum):
+        """
+        """
+        Gets the model ready for training. Adds losses, regularization, and
+        metrics. Then calls the Keras compile() function.
+        
         # Optimizer object
         optimizer = tf.keras.optimizers.SGD(
             lr=learning_rate, momentum=momentum,
@@ -2085,11 +2104,13 @@ class MaskRCNN():
                     tf.reduce_mean(layer.output, keepdims=True)
                     * self.config.LOSS_WEIGHTS.get(name, 1.))
             self.keras_model.metrics_tensors.append(loss)
-
+"""
+"""
     def set_trainable(self, layer_regex, keras_model=None, indent=0, verbose=1):
+        """
         """Sets model layers as trainable if their names match
         the given regular expression.
-        """
+        
         # Print message on the first call (but not on recursive calls)
         if verbose > 0 and keras_model is None:
             log("Selecting layers to train")
@@ -2122,7 +2143,7 @@ class MaskRCNN():
             if trainable and verbose > 0:
                 log("{}{:20}   ({})".format(" " * indent, layer.name,
                                             layer.__class__.__name__))
-
+"""
     def set_log_dir(self, model_path=None):
         """Sets the model log directory and epoch counter.
 
@@ -2160,10 +2181,14 @@ class MaskRCNN():
             self.config.NAME.lower()))
         self.checkpoint_path = self.checkpoint_path.replace(
             "*epoch*", "{epoch:04d}")
-
+"""
+"""
+"""
     def train(self, train_dataset, val_dataset, learning_rate, epochs, layers,
               augmentation=None, custom_callbacks=None, no_augmentation_sources=None):
-        """Train the model.
+              """
+              """
+        #Train the model.
         train_dataset, val_dataset: Training and validation Dataset objects.
         learning_rate: The learning rate to train with
         epochs: Number of training epochs. Note that previous training epochs
@@ -2194,7 +2219,7 @@ class MaskRCNN():
         no_augmentation_sources: Optional. List of sources to exclude for
             augmentation. A source is string that identifies a dataset and is
             defined in the Dataset class.
-        """
+        
         assert self.mode == "training", "Create model in training mode."
 
         # Pre-defined layer regular expressions
@@ -2236,7 +2261,7 @@ class MaskRCNN():
             callbacks += custom_callbacks
 
         # Train
-        log("\nStarting at epoch {}. LR={}\n".format(self.epoch, learning_rate))
+        log("#\nStarting at epoch {}. LR={}#\n".format(self.epoch, learning_rate))
         log("Checkpoint Path: {}".format(self.checkpoint_path))
         self.set_trainable(layers)
         self.compile(learning_rate, self.config.LEARNING_MOMENTUM)
@@ -2262,6 +2287,8 @@ class MaskRCNN():
             use_multiprocessing=True,
         )
         self.epoch = max(self.epoch, epochs)
+"""
+
 
     def mold_inputs(self, images):
         """Takes a list of images and modifies them to the format expected
