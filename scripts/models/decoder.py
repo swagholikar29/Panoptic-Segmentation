@@ -72,46 +72,31 @@ class Decoder(Model):
         for i in range(3):
             y = self.dec5[1+i](y)
         y, skips, os = self.add_skip(x, y, skips, os)
-        
-	C1 = y
+
         x = y
-        
         for i in range(4):
             y = self.dec4[i](y)
         y, skips, os = self.add_skip(x, y, skips, os)
         
-        C2 = y
         x = y
-        
         for i in range(4):
             y = self.dec3[i](y)
         y, skips, os = self.add_skip(x, y, skips, os)
         
-        C3 = y  
         x = y
-        
         for i in range(4):
             y = self.dec2[i](y)
         y, skips, os = self.add_skip(x, y, skips, os)
-  	   
-        C4 = y
-        x = y
         
+        x = y
         for i in range(4):
             y = self.dec1[i](y)
         y, skips, os = self.add_skip(x, y, skips, os)
-        
-	C5 = y
-	
-	self.FPN_rpn_feature_maps = [C1, C2, C3, C4, C5]
-        self.FPN_mrcnn_feature_maps = [C1, C2, C3, C4]
-        
-	dummy1 = self.FPN_rpn_feature_maps
-	dummy2 = self.FPN_mrcnn_feature_maps
-        y = self.dropout(y)
-        
-        return dummy1, dummy2, y
 
+        y = self.dropout(y)
+
+        return y
+    
     def add_skip(self, x, y, skips, os):
         if y.shape[2] > x.shape[2]:
             os //= 2
@@ -138,6 +123,7 @@ class Decoder(Model):
         layers.append(LeakyReLU(0.1))
 
         layers.append(BasicBlock(planes, bn_d, self.bn_axis))
+
         return layers
 
 
