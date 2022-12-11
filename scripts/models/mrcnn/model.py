@@ -31,14 +31,13 @@ from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
 assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
-
 ############################################################
 #  Utility Functions
 ############################################################
 
 def log(text, array=None):
     """Prints a text message. And, optionally, if a Numpy array is provided it
-    prints it's shape, min, and max values.
+    prints its shape, min, and max values.
     """
     if array is not None:
         text = text.ljust(25)
@@ -85,16 +84,6 @@ def compute_backbone_shapes(config, image_shape):
         [[int(math.ceil(image_shape[0] / stride)),
           int(math.ceil(image_shape[1] / stride))]
          for stride in config.BACKBONE_STRIDES])
-
-
-############################################################
-#  Resnet Graph
-############################################################
-
-# Code adopted from:
-# https://github.com/fchollet/deep-learning-models/blob/master/resnet50.py
-
-# deleted
 
 ############################################################
 #  Proposal Layer
