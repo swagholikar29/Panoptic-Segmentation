@@ -5,7 +5,7 @@ Master's in Robotics Engineering
 
 #### Members: [Deepak Harshal Nagle](https://github.com/deepaknagle), [Anuj Pai Raikar](https://github.com/22by7-raikar), [Soham Aserkar](https://github.com/ssaserkar), [Swapneel Wagholikar](https://github.com/swagholikar29)
 
-### [Link to Report](https://github.com/22by7-raikar/Panoptic_Segmentation/CS541_Deep_Learning_Report.pdf)
+### [Link to Report](https://github.com/22by7-raikar/Panoptic_Segmentation/blob/main/CS541_Deep_Learning_Report.pdf)
 
 --------------------------------------------------------------
 
