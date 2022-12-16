@@ -9,7 +9,7 @@ Master's in Robotics Engineering
 
 --------------------------------------------------------------
 
-### Dataset
+### Dataset:
 
 Use the following links to download the Velodyne sensor data (SemanticKITTI) and the Label data folders. Place them in the `dataset` folder in the form mentioned as per: [Semantic KITTI website](http://www.semantic-kitti.org/dataset.html#overview).
 
@@ -19,7 +19,7 @@ Use the following links to download the Velodyne sensor data (SemanticKITTI) and
 
 The path of this dataset is required as an argument to run the command during execution.
 
-## Requirements:
+### Requirements:
 
 1. [Tensorflow](https://www.tensorflow.org/install), Numpy, Matplotlib, GPU drivers, CUDA Toolkit, Pillow
 
