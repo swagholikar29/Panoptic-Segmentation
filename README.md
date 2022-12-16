@@ -19,19 +19,9 @@ Use the following links to download the Velodyne sensor data (SemanticKITTI) and
 
 The path of this dataset is required as an argument to run the command during execution.
 
---------------------------------------------------------------
-
 ## Requirements:
 
-1. [Tensorflow](https://www.tensorflow.org/install) 
-
-2. Numpy, Matplotlib
-
-3. GPU drivers
-
-4. CUDA Toolkit
-
-5. Pillow
+1. [Tensorflow](https://www.tensorflow.org/install), Numpy, Matplotlib, GPU drivers, CUDA Toolkit, Pillow
 
 --------------------------------------------------------------
 
