@@ -15,7 +15,7 @@ import numpy as np
 from utils.CustomIoU import CustomIoU
 import json
 
-BATCH_SIZE = 2
+BATCH_SIZE = 3
 NUM_EPOCHS = 10
 
 def test_visualize(multiple=False):
