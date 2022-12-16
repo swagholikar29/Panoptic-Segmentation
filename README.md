@@ -16,7 +16,7 @@ Master's in Robotics Engineering
 
 ### Requirements:
 
-1. [Tensorflow](https://www.tensorflow.org/install), Numpy, Matplotlib, GPU drivers, CUDA Toolkit, Pillow
+[Tensorflow](https://www.tensorflow.org/install), Numpy, Matplotlib, GPU drivers, CUDA Toolkit, Pillow
 
 --------------------------------------------------------------
 
