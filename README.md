@@ -14,13 +14,13 @@ Master of Science in Robotics Engineering
 
 1. Numpy
 
-2. Pillow
+2. Matplotlib
 
 3. CUDA Toolkit + GPU drivers
 
-4. Matplotlib
+4. [Tensorflow](https://www.tensorflow.org/install) 
 
-5. [Tensorflow](https://www.tensorflow.org/install)
+5. Pillow
 
 --------------------------------------------------------------
 
