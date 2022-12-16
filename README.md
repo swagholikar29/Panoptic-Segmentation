@@ -11,7 +11,8 @@ Master's in Robotics Engineering
 
 ### Dataset:
 
-Use the following links to download the Velodyne sensor data(http://www.cvlibs.net/download.php?file=data_odometry_velodyne.zip) (LiDAR Point Cloud SemanticKITTI) and the Label data folders(http://www.semantic-kitti.org/assets/data_odometry_labels.zip). Place them in the `dataset` folder in the form mentioned as per: [Semantic KITTI website](http://www.semantic-kitti.org/dataset.html#overview). The path of the dataset is required as an argument to run the command during execution.
+1. Use the following links to download the [Velodyne sensor data](https://www.cvlibs.net/download.php?file=data_odometry_velodyne.zip) (LiDAR Point Cloud SemanticKITTI) and the [Label data folders](http://www.semantic-kitti.org/assets/data_odometry_labels.zip). 
+2. Place them in the `dataset` folder in the form mentioned as per: [Semantic KITTI website](http://www.semantic-kitti.org/dataset.html#overview). The path of the dataset is required as an argument to run the command during execution.
 
 ### Requirements:
 
