@@ -5,7 +5,7 @@ Master's in Robotics Engineering
 
 #### Members: [Deepak Harshal Nagle](https://github.com/deepaknagle), [Anuj Pai Raikar](https://github.com/22by7-raikar), [Soham Aserkar](https://github.com/ssaserkar), [Swapneel Wagholikar](https://github.com/swagholikar29)
 
-### [Link to Report](./CS541_Deep Learning Report.pdf)
+### [Link to Report](https://github.com/22by7-raikar/Panoptic_Segmentation/CS541_Deep Learning Report.pdf)
 
 --------------------------------------------------------------
 
@@ -27,7 +27,8 @@ Go to the parent folder of this repo, that is, [panoptic_segmentation](.) and en
   python3 scripts/main.py -d **path_to_the_dataset_folder**
   ```
 ----------------------
-Results:![Results](https://user-images.githubusercontent.com/116770046/208182395-3564786a-27b2-4e2d-b430-6ae313794ee9.jpeg)
+## Results:
+![Results](https://user-images.githubusercontent.com/116770046/208182395-3564786a-27b2-4e2d-b430-6ae313794ee9.jpeg)
 
 
 
