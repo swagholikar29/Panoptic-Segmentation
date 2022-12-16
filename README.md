@@ -30,3 +30,5 @@ Go to the parent folder of this repo, that is, [panoptic_segmentation](.) and en
 ----------------------
 ## References
 1. Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick. [Mask R-CNN](https://arxiv.org/pdf/1703.06870.pdf). Facebook AI Research (FAIR) (2018)
+2. Yuwen Xiong, Renjie Liao, Hengshuang Zhao, Rui Hu, Min Bai, Ersin Yumer, Raquel Urtasun. [UPSNet: A Unified Panoptic Segmentation Network](https://openaccess.thecvf.com/content_CVPR_2019/papers/Xiong_UPSNet_A_Unified_Panoptic_Segmentation_Network_CVPR_2019_paper.pdf). IEEE/CVF Conference (2019)
+3. Milioto, Andres, Vizzo, Ignacio, Behley, Jens, Stachniss, Cyrill. (2019). [RangeNet ++: Fast and Accurate LiDAR Semantic Segmentation](http://www.ipb.uni-bonn.de/wp-content/papercite-data/pdf/milioto2019iros.pdf). IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) (2019)
