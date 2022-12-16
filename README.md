@@ -5,7 +5,7 @@ Master's in Robotics Engineering
 
 #### Members: [Deepak Harshal Nagle](https://github.com/deepaknagle), [Anuj Pai Raikar](https://github.com/22by7-raikar), [Soham Aserkar](https://github.com/ssaserkar), [Swapneel Wagholikar](https://github.com/swagholikar29)
 
-### [Link to Report](./final_report.pdf)
+### [Link to Report](./CS541_Deep Learning Report.pdf)
 
 --------------------------------------------------------------
 
@@ -26,8 +26,11 @@ Go to the parent folder of this repo, that is, [panoptic_segmentation](.) and en
   ```
   python3 scripts/main.py -d **path_to_the_dataset_folder**
   ```
-
 ----------------------
+Results:![Results](https://user-images.githubusercontent.com/116770046/208182395-3564786a-27b2-4e2d-b430-6ae313794ee9.jpeg)
+
+
+
 ## References
 1. Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick. [Mask R-CNN](https://arxiv.org/pdf/1703.06870.pdf). Facebook AI Research (FAIR) (2018)
 2. Milioto, Andres, Vizzo, Ignacio, Behley, Jens, Stachniss, Cyrill. [RangeNet ++: Fast and Accurate LiDAR Semantic Segmentation](http://www.ipb.uni-bonn.de/wp-content/papercite-data/pdf/milioto2019iros.pdf). IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) (2019)
